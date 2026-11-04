@@ -8,7 +8,7 @@ Están al principio de `src/styles.css`, en `:root`. `--accent` es el violeta pr
 
 1. Confirmá en la [tabla de precios](https://developers.cloudflare.com/workers-ai/platform/pricing/) que no requiera el plan pago.
 2. Agregalo a `MODELS` en `src/shared/api.ts`. Poné `tools: true` solo si puede llamar herramientas.
-3. Probalo con `npm run preview`. No alcanza con que responda: mirá cuánto tarda y si acierta. Gemma, por ejemplo, tardó más de 30 segundos en algunas pruebas, y Llama 3.2 3B respondió siempre "NO" al clasificar.
+3. Probalo con `npm run preview`. No alcanza con que responda: mirá cuánto tarda y si acierta.
 
 ## Agregar una plantilla
 
