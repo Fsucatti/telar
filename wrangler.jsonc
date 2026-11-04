@@ -1,0 +1,19 @@
+{
+  // Static site plus a small API. Only /api/* reaches the Worker code.
+  "name": "telar",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  // Workers AI. On the Free plan, calls fail after 10,000 neurons per day: they never charge.
+  "ai": { "binding": "AI" },
+  // Per-visitor limits, so one person can't use up the daily allowance by accident.
+  "ratelimits": [
+    { "name": "CHAT_LIMIT", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } },
+    { "name": "IMAGE_LIMIT", "namespace_id": "4102", "simple": { "limit": 4, "period": 60 } }
+  ]
+}
