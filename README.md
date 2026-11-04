@@ -4,6 +4,8 @@ Constructor visual de agentes de IA. Arrastrás bloques a un lienzo, los conect�
 
 **Diseño:** Julian Sucatti. **Desarrollo:** Francisco Sucatti.
 
+**Demo:** <https://telar.fsucatti-portfolio.workers.dev>
+
 ## Qué hace
 
 | Bloque | Función | Dónde corre |
