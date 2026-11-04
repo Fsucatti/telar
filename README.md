@@ -1,116 +1,116 @@
 # Telar
 
-Constructor visual de agentes de IA. Arrastrás bloques a un lienzo, los conectás y ejecutás el agente con modelos reales, sin registrarte.
+A visual AI agent builder. Drag blocks onto a canvas, connect them, and run the agent with real models. No sign-up needed.
 
-**[Probar la demo](https://telar.fsucatti-portfolio.workers.dev)**
+**[Try the demo](https://telar.fsucatti-portfolio.workers.dev)**
 
-![Telar con un agente que escribe un prompt y genera una imagen](docs/telar.webp)
+![Telar running an agent that writes a prompt and generates an image](docs/telar.webp)
 
-Diseño de **Julian Sucatti**. Desarrollo de **Francisco Sucatti**.
+Design by **Julian Sucatti**. Built by **Francisco Sucatti**.
 
-## Primeros pasos
+## Getting started
 
-La forma más rápida es partir de una plantilla:
+The quickest way in is a template:
 
-1. En la pantalla inicial, elegí **Assistant with tools**.
-2. Apretá **Playground**, arriba a la derecha.
-3. Elegí una de las preguntas sugeridas o escribí la tuya.
+1. On the home screen, choose **Assistant with tools**.
+2. Click **Playground** at the top right.
+3. Pick a suggested question or type your own.
 
-Mientras corre, cada bloque se ilumina en el lienzo y la respuesta aparece a medida que se escribe. Abrí **steps** sobre la respuesta para ver qué hizo cada bloque y cuánto tardó.
+During a run, each block lights up on the canvas and the answer appears as it's written. Expand **steps** above the answer to see what each block did and how long it took.
 
-### Plantillas
+### Templates
 
-| Plantilla | Qué muestra |
+| Template | What it shows |
 |---|---|
-| **Contract analyzer** | Responde desde documentos y procesa la respuesta con código |
-| **Job fit reviewer** | Compara una oferta de trabajo con un CV |
-| **Support triage** | La IA decide por cuál de dos caminos sigue cada mensaje |
-| **Assistant with tools** | Un agente con memoria que usa calculadora, fecha y documentos |
-| **Poster maker** | Un modelo escribe el prompt y otro genera la imagen |
+| **Contract analyzer** | Answers from documents and processes the answer with code |
+| **Job fit reviewer** | Compares a job posting with a resume |
+| **Support triage** | AI decides which of two paths each message takes |
+| **Assistant with tools** | An agent with memory that uses a calculator, the date and documents |
+| **Poster maker** | One model writes the prompt and another generates the image |
 
-Los documentos y datos de las plantillas son inventados.
+The documents and data in the templates are made up.
 
-## Armar tu propio agente
+## Build your own agent
 
-1. Apretá **New blank agent**.
-2. Elegí un bloque de la lista izquierda: con un clic se inserta antes de **Output** y queda conectado. También podés arrastrarlo a un lugar del lienzo y conectarlo a mano.
-3. Hacé clic en el bloque para configurarlo en el panel derecho.
-4. Probalo en **Playground**. Con Enter enviás, y con Shift+Enter hacés un salto de línea.
+1. Click **New blank agent**.
+2. Choose a block from the left list. A click inserts it before **Output**, already connected. You can also drag it to a spot on the canvas and connect it by hand.
+3. Click the block to configure it in the right panel.
+4. Try it in **Playground**. Enter sends, and Shift+Enter adds a line break.
 
-### Conexiones
+### Connections
 
-Cada bloque recibe texto por arriba y lo entrega por abajo, desde **Input** hasta **Output**. Para conectar, arrastrá desde un punto hasta otro.
+Each block takes text in at the top and passes it on from the bottom, from **Input** through to **Output**. To connect two blocks, drag from one point to another.
 
-**Documents** y **Conversation** son distintos: se conectan al costado izquierdo de un modelo, porque le dan contexto en lugar de pasarle el mensaje.
+**Documents** and **Conversation** work differently. They connect to the left side of a model, because they give it context instead of passing it the message.
 
-En los textos de configuración, `{{input}}` se reemplaza por lo que produjo el bloque anterior.
+In a block's settings, `{{input}}` is replaced by what the previous block produced.
 
-## Bloques
+## Blocks
 
-| Bloque | Para qué sirve |
+| Block | What it does |
 |---|---|
-| **Language** | Responde con un modelo de texto. Le definís instrucciones, modelo, creatividad y largo de la respuesta |
-| **Agent** | Un modelo que decide cuándo usar sus herramientas: calculadora, fecha y hora, y búsqueda en documentos |
-| **Image generation** | Genera una imagen a partir de un texto |
-| **Documents** | Busca en tus archivos los pasajes relevantes para cada pregunta y se los pasa al modelo |
-| **Conversation** | Le permite a un modelo recordar los mensajes anteriores |
-| **Condition** | Divide el flujo en un camino Yes y otro No, según un texto, un patrón o una pregunta que responde la IA |
-| **Text template** | Combina texto fijo con el resultado del bloque anterior |
-| **JavaScript** | Procesa el texto con tu código. Recibe `input` y devuelve el resultado |
+| **Language** | Answers with a text model. You set its instructions, model, creativity and answer length |
+| **Agent** | A model that decides when to use its tools: calculator, date and time, and document search |
+| **Image generation** | Generates an image from text |
+| **Documents** | Finds the passages in your files that are relevant to each question and gives them to the model |
+| **Conversation** | Lets a model remember earlier messages |
+| **Condition** | Splits the flow into a Yes path and a No path, based on text, a pattern or a question that AI answers |
+| **Text template** | Combines fixed text with the previous block's result |
+| **JavaScript** | Processes text with your code. It receives `input` and returns the result |
 
-Por ejemplo, este bloque de JavaScript cuenta las palabras:
+For example, this JavaScript block counts words:
 
 ```js
 const words = input.trim().split(/\s+/).length;
 return `${input}\n\nWords: ${words}`;
 ```
 
-**Policies**, en la configuración de un modelo, retiene las respuestas que contengan los términos que definas.
+**Policies**, in a model's settings, withholds any answer that contains terms you define.
 
-## Otras funciones
+## Other features
 
-- **Versiones:** **Create new version** guarda el estado actual, y el selector junto al nombre vuelve a una versión anterior.
-- **Compartir:** **Share** copia un enlace. Quien lo abre recibe su propia copia del agente.
-- **Deshacer:** con los botones del lienzo, o con Ctrl+Z y Ctrl+Y.
-- **Overview:** muestra la descripción, las versiones y las últimas ejecuciones.
-- **Celular:** funciona en pantallas chicas, con el botón **Add block**.
+- **Versions:** **Create new version** saves the current state, and the selector next to the name goes back to an earlier one.
+- **Sharing:** **Share** copies a link. Whoever opens it gets their own copy of the agent.
+- **Undo:** use the buttons on the canvas, or Ctrl+Z and Ctrl+Y.
+- **Overview:** shows the description, versions and recent runs.
+- **Phones:** it works on small screens, through the **Add block** button.
 
-## Cómo funciona
+## How it works
 
 ```mermaid
 flowchart LR
-  subgraph Navegador
-    A[Lienzo] --> B[Motor de flujos]
-    B --> C[Documentos, código y herramientas]
+  subgraph Browser
+    A[Canvas] --> B[Flow engine]
+    B --> C[Documents, code and tools]
   end
-  B -- solo para llamar a los modelos --> D[Cloudflare Worker]
+  B -- only to call models --> D[Cloudflare Worker]
   D --> E[Workers AI]
 ```
 
-El agente se ejecuta en tu navegador. El motor ordena los bloques según sus conexiones, los corre uno por uno, y omite los que quedan en un camino que la condición no eligió. Solo los bloques que usan un modelo llaman al servidor, que valida el pedido y consulta a [Workers AI](https://developers.cloudflare.com/workers-ai/).
+The agent runs in your browser. The engine orders the blocks by their connections, runs them one at a time, and skips any on a path that a condition didn't choose. Only blocks that use a model call the server, which validates the request and queries [Workers AI](https://developers.cloudflare.com/workers-ai/).
 
-- **Búsqueda en documentos:** divide los archivos en pasajes y los ordena por relevancia con BM25, sin base de datos.
-- **Herramientas:** el modelo pide una herramienta, el navegador la ejecuta y le devuelve el resultado, hasta que el modelo puede responder.
-- **Código:** corre en un Web Worker aislado, sin acceso a la página ni a la red, y se corta a los 3 segundos.
+- **Document search:** splits files into passages and ranks them by relevance with BM25, with no database.
+- **Tools:** the model asks for a tool, the browser runs it and returns the result, and this repeats until the model can answer.
+- **Code:** runs in an isolated Web Worker with no access to the page or the network, and stops after 3 seconds.
 
-**Tecnologías:** React, TypeScript, React Flow, Zustand, Vite, Cloudflare Workers y Workers AI.
+**Built with:** React, TypeScript, React Flow, Zustand, Vite, Cloudflare Workers and Workers AI.
 
-## Tus datos
+## Your data
 
-- Los agentes y documentos se guardan solo en tu navegador. No hay cuentas, y si borrás los datos del navegador se pierden.
-- Al ejecutar, los modelos reciben tu mensaje, las instrucciones del bloque y los pasajes relevantes de tus documentos, a través de Cloudflare.
-- Un enlace de **Share** incluye los documentos completos del agente. Tenelo en cuenta antes de compartirlo.
+- Agents and documents are saved only in your browser. There are no accounts, and clearing your browser data deletes them.
+- During a run, models receive your message, the block's instructions and the relevant passages from your documents, through Cloudflare.
+- A **Share** link includes the agent's full documents, so check them before you share it.
 
-## Límites de la demo
+## Demo limits
 
-- **Cuota diaria:** la IA real tiene una cuota gratuita compartida, que se renueva a las 00:00 UTC. Si se agota, podés seguir con **Simulated answers**, que prueba el flujo sin usar IA.
-- **Por minuto:** hay un máximo de pedidos por visitante. Si lo alcanzás, esperá un minuto.
-- **Documentos:** solo archivos de texto (`.txt`, `.md`, `.csv`, `.json`, `.html`) de hasta 300 KB. Todavía no lee PDF.
-- **Velocidad:** una respuesta suele tardar unos segundos, aunque puede demorarse más cuando los modelos tienen mucha carga.
+- **Daily allowance:** real AI runs on a shared free allowance that renews at 00:00 UTC. If it runs out, you can keep going with **Simulated answers**, which tests the flow without using AI.
+- **Per minute:** each visitor has a maximum number of requests. If you reach it, wait a minute.
+- **Documents:** text files only (`.txt`, `.md`, `.csv`, `.json`, `.html`), up to 300 KB each. PDF isn't supported yet.
+- **Speed:** an answer usually takes a few seconds, and can take longer when the models are busy.
 
-## Correrlo en tu computadora
+## Run it locally
 
-Necesitás Node.js 22 o superior y una cuenta gratuita de Cloudflare, para acceder a los modelos.
+You need Node.js 22 or later and a free Cloudflare account, which gives access to the models.
 
 ```bash
 npm install
@@ -124,12 +124,12 @@ npx wrangler login
 npm run preview
 ```
 
-Abre <http://localhost:8787>. Las llamadas a la IA descuentan de la cuota de tu cuenta.
+Then open <http://localhost:8787>. AI calls count against your account's allowance.
 
-| Comando | Qué hace |
+| Command | What it does |
 |---|---|
-| `npm test` | Pruebas del motor |
-| `npm run test:e2e` | Pruebas en el navegador, con la IA simulada. En Windows usan Microsoft Edge |
-| `npm run deploy` | Publica en tu cuenta de Cloudflare |
+| `npm test` | Tests the engine |
+| `npm run test:e2e` | Tests in the browser, with AI simulated. On Windows these use Microsoft Edge |
+| `npm run deploy` | Publishes to your Cloudflare account |
 
-Para sumar bloques, modelos o plantillas, mirá [cómo personalizar Telar](docs/PERSONALIZAR.md).
+To add blocks, models or templates, see [how to customize Telar](docs/CUSTOMIZING.md).
