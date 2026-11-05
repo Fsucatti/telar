@@ -6,7 +6,7 @@ They're at the top of `src/styles.css`, under `:root`. `--accent` is the main pu
 
 ## Add a model
 
-1. Check the [pricing table](https://developers.cloudflare.com/workers-ai/platform/pricing/) to confirm it doesn't require the paid plan.
+1. Pick a text model from the [Workers AI catalog](https://developers.cloudflare.com/workers-ai/models/).
 2. Add it to `MODELS` in `src/shared/api.ts`. Set `tools: true` only if it can call tools.
 3. Try it with `npm run preview`. Getting an answer isn't enough: check how long it takes and whether it's right.
 
@@ -32,8 +32,3 @@ Using a translation block as an example:
 6. **Card:** define its labels in `chipsFor`, in `src/ui/BlockCard.tsx`.
 7. **Settings:** add its form to `FormFor`, in `src/ui/ConfigPanel.tsx`.
 8. **Tests:** add a case to `src/engine/engine.test.ts`.
-
-## Change the limits
-
-- **Per visitor:** `ratelimits` in `wrangler.jsonc`. The period can only be 10 or 60 seconds.
-- **Request size:** `LIMITS` in `src/shared/api.ts`.

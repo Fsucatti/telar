@@ -77,21 +77,7 @@ return `${input}\n\nWords: ${words}`;
 
 ## How it works
 
-```mermaid
-flowchart LR
-  subgraph Browser
-    A[Canvas] --> B[Flow engine]
-    B --> C[Documents, code and tools]
-  end
-  B -- only to call models --> D[Cloudflare Worker]
-  D --> E[Workers AI]
-```
-
-The agent runs in your browser. The engine orders the blocks by their connections, runs them one at a time, and skips any on a path that a condition didn't choose. Only blocks that use a model call the server, which validates the request and queries [Workers AI](https://developers.cloudflare.com/workers-ai/).
-
-- **Document search:** splits files into passages and ranks them by relevance with BM25, with no database.
-- **Tools:** the model asks for a tool, the browser runs it and returns the result, and this repeats until the model can answer.
-- **Code:** runs in an isolated Web Worker with no access to the page or the network, and stops after 3 seconds.
+The agent runs in your browser. Blocks run one at a time, following their connections, and blocks that use a model call [Workers AI](https://developers.cloudflare.com/workers-ai/).
 
 **Built with:** React, TypeScript, React Flow, Zustand, Vite, Cloudflare Workers and Workers AI.
 
@@ -103,8 +89,7 @@ The agent runs in your browser. The engine orders the blocks by their connection
 
 ## Demo limits
 
-- **Daily allowance:** real AI runs on a shared free allowance that renews at 00:00 UTC. If it runs out, you can keep going with **Simulated answers**, which tests the flow without using AI.
-- **Per minute:** each visitor has a maximum number of requests. If you reach it, wait a minute.
+- **Usage:** the demo has usage limits. If you reach one, try again later, or keep going with **Simulated answers**, which tests the flow without using AI.
 - **Documents:** text files only (`.txt`, `.md`, `.csv`, `.json`, `.html`), up to 300 KB each. PDF isn't supported yet.
 - **Speed:** an answer usually takes a few seconds, and can take longer when the models are busy.
 
@@ -130,6 +115,5 @@ Then open <http://localhost:8787>. AI calls count against your account's allowan
 |---|---|
 | `npm test` | Tests the engine |
 | `npm run test:e2e` | Tests in the browser, with AI simulated. On Windows these use Microsoft Edge |
-| `npm run deploy` | Publishes to your Cloudflare account |
 
 To add blocks, models or templates, see [how to customize Telar](docs/CUSTOMIZING.md).
