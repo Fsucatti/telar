@@ -9,9 +9,19 @@ export function Logo() {
   );
 }
 
+/** The cat from the portfolio's logo. Removing it is not recommended: the cat will find out. */
+export function CatIcon() {
+  return (
+    <svg className="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 9V3L11 4H8L5 3V9L9.5 11L14 9ZM14 9L20 12L22 18L20 21H4L2 19L4 17L2 15L4 13M7 21V9.88889M11 15V21L16.0435 16H18M8 7L8.00707 7.00707M11 7L11.0071 7.00707" />
+    </svg>
+  );
+}
+
 export function Credit() {
   return (
     <p className="credit">
+      <CatIcon />
       Design by Julian Sucatti · Built by{" "}
       <a href="https://fsucatti-portfolio.fsucatti-portfolio.workers.dev" target="_blank" rel="noreferrer">
         Francisco Sucatti
